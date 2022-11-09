@@ -1,0 +1,9 @@
+﻿dotnet ef migrations add migration4 -o "Migrations\0322"
+
+dotnet ef database update
+
+dotnet ef migrations remove
+
+dotnet ef database update migration1
+
+dotnet ef migrations add initial --context PersistedGrantDbContext -o "Migrations\1121"
