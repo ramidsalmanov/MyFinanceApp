@@ -1,1 +1,4 @@
 ﻿*.exe
+
+MyFinance.Core/bin
+MyFinance.Core/obj
