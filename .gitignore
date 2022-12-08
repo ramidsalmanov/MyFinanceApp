@@ -1,0 +1,6 @@
+﻿*.exe
+.vs
+
+obj
+bin
+.idea
