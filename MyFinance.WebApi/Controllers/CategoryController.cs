@@ -1,11 +1,9 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyFinance.Core.Dto;
 using MyFinance.Core.Services;
-using MyFinance.WebApi.Helpers;
 
 namespace MyFinance.WebApi.Controllers;
 
@@ -13,23 +11,20 @@ namespace MyFinance.WebApi.Controllers;
 [ApiController]
 public class CategoryController : BaseController
 {
-    private IUserService _userService;
     private ICategoryService _categoryService;
-    private IValidator<CategoryDto> _validator;
+    private IMapper _mapper;
 
-    public CategoryController(IUserService userService, IMapper mapper, ICategoryService categoryService,
-        IValidator<CategoryDto> validator) : base(mapper)
+    public CategoryController(IMapper mapper, ICategoryService categoryService)
     {
-        _userService = userService;
+        _mapper = mapper;
         _categoryService = categoryService;
-        _validator = validator;
     }
 
     [HttpGet]
     public async Task<IEnumerable<CategoryDto>> Get()
     {
         var entities = _categoryService.GetCategories();
-        var categories = entities.ProjectTo<CategoryDto>(Mapper.ConfigurationProvider);
+        var categories = entities.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
         return await categories.ToListAsync();
     }
 

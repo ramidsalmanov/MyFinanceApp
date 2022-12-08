@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyFinance.Core.Dto.Identity;
@@ -15,8 +14,7 @@ public class AuthenticateController : BaseController
     private IUserService _userService;
     private IAuthenticationService _authenticationService;
 
-    public AuthenticateController(IUserService userService, IAuthenticationService authenticationService,
-        IMapper mapper) : base(mapper)
+    public AuthenticateController(IUserService userService, IAuthenticationService authenticationService)
     {
         _userService = userService;
         _authenticationService = authenticationService;
@@ -29,10 +27,9 @@ public class AuthenticateController : BaseController
         var result = await _authenticationService.LoginAsync(loginDto.UserName, loginDto.Password);
         if (!result.Success)
         {
-            return Unauthorized();
+            return Unauthorized("Неверный логин или пароль");
         }
 
-        var dd = result.GetData<TokenDto>();
         return Ok(result.GetData<TokenDto>());
     }
 

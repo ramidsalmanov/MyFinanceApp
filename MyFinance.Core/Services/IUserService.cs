@@ -1,5 +1,4 @@
 ﻿using MyFinance.Common.Models;
-using MyFinance.Domain.Models;
 using MyFinance.Domain.Models.Identity;
 
 namespace MyFinance.Core.Services;

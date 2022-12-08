@@ -1,5 +1,4 @@
 ﻿using MyFinance.Common;
-using MyFinance.Core.Dto.Budget;
 using MyFinance.Core.Services;
 using MyFinance.Domain.Models.Budget;
 using MyFinance.Persistence;
@@ -19,10 +18,7 @@ public class BudgetService : IBudgetService
     {
         var budget = await _context.Set<Budget>().FindAsync(budgetId);
         Checker.NotNull(budget);
-        foreach (var budgetItem in budgetItems)
-        {
-            budget.BudgetItems.Add(budgetItem);
-        }
+        budget.BudgetItems = budgetItems.ToList();
 
         await _context.SaveChangesAsync();
     }

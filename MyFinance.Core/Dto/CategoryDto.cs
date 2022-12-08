@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using MyFinance.Domain.Models;
 
 namespace MyFinance.Core.Dto;

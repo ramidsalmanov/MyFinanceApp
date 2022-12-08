@@ -2,6 +2,8 @@
 
 namespace MyFinance.WebApi.Controllers;
 
-public class BaseController : ControllerBase
+[Route("api/{controller}s")]
+public class UserController : Controller
 {
+    
 }

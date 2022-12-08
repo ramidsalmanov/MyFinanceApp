@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MyFinance.Common;
 using MyFinance.Common.Models;

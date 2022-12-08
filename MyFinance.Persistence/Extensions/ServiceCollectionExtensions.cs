@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MyFinance.Domain.Models.Identity;
 
 namespace MyFinance.Persistence.Extensions;
 

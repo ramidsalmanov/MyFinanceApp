@@ -10,12 +10,14 @@ using MyFinance.Domain.Models.Transactions;
 namespace MyFinance.WebApi.Controllers;
 
 [Route("api/{controller}")]
-public class TransactionsController : BaseController
+public class TransactionsController : BaseController            
 {
-    private ITransactionService _transactionService;
+    private ITransactionService    _transactionService;
+    private IMapper _mapper;
 
-    public TransactionsController(IMapper mapper, ITransactionService transactionService) : base(mapper)
+    public TransactionsController(IMapper mapper, ITransactionService transactionService)
     {
+        _mapper = mapper;
         _transactionService = transactionService;
     }
 
@@ -23,7 +25,7 @@ public class TransactionsController : BaseController
     public async Task<IEnumerable<TransactionDto>> Get(long id)
     {
         var transactions = await _transactionService.GetTransactions(id)
-            .ProjectTo<TransactionDto>(Mapper.ConfigurationProvider).ToListAsync();
+            .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).ToListAsync();
 
         // var transfers = _transactionService.GetTransfers(id)
         //     .ProjectTo<TransactionDto>(Mapper.ConfigurationProvider);
@@ -58,7 +60,7 @@ public class TransactionsController : BaseController
     [Route("transfer")]
     public async Task<ActionResult<Transfer>> Post(TransferDto dto)
     {
-        var transfer = Mapper.Map<Transfer>(dto);
+        var transfer = _mapper.Map<Transfer>(dto);
         var result = await _transactionService.AddTransferAsync(transfer);
         if (result.Failure)
         {

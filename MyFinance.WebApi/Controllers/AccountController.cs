@@ -1,6 +1,5 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyFinance.Core.Dto.Account;
 using MyFinance.Core.Services;
@@ -13,11 +12,13 @@ namespace MyFinance.WebApi.Controllers;
 public class AccountController : BaseController
 {
     private IUserService _userService;
+    private IMapper _mapper;
     private IAccountService _accountService;
 
-    public AccountController(IUserService userService, IMapper mapper, IAccountService accountService) : base(mapper)
+    public AccountController(IUserService userService, IMapper mapper, IAccountService accountService)
     {
         _userService = userService;
+        _mapper = mapper;
         _accountService = accountService;
     }
 
@@ -26,7 +27,7 @@ public class AccountController : BaseController
     {
         var dto = await _accountService.GetUserAccountsAsync();
 
-        var accounts = dto.ProjectTo<AccountDto>(Mapper.ConfigurationProvider);
+        var accounts = dto.ProjectTo<AccountDto>(_mapper.ConfigurationProvider);
 
         return Ok(accounts);
     }
@@ -34,7 +35,7 @@ public class AccountController : BaseController
     [HttpPost]
     public async Task<long> Post([FromBody] AccountDto dto)
     {
-        var account = Mapper.Map<Account>(dto);
+        var account = _mapper.Map<Account>(dto);
         await _accountService.CreateAsync(account);
         return account.Id;
     }

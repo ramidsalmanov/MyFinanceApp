@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MyFinance.Common;
 using MyFinance.Common.Models;
 using MyFinance.Core.Dto;
-using MyFinance.Core.Exceptions;
 using MyFinance.Core.Services;
 using MyFinance.Domain.Models;
 using MyFinance.Domain.Models.Identity;

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using MyFinance.Domain.Models.Identity;
-using MyFinance.Persistence;
 using MyFinance.WebApi.Models;
 using MyFinance.WebApi.Services;
 

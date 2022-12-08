@@ -1,5 +1,4 @@
-﻿using MyFinance.Core.Dto.Budget;
-using MyFinance.Domain.Models.Budget;
+﻿using MyFinance.Domain.Models.Budget;
 
 namespace MyFinance.Core.Services;
 

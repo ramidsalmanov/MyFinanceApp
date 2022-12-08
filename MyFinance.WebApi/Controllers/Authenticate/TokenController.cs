@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +16,7 @@ public class TokenController : BaseController
     private ITokenService _tokenService;
     private IDbContext _dbContext;
 
-    public TokenController(ITokenService tokenService, IDbContext context, IMapper mapper) : base(mapper)
+    public TokenController(ITokenService tokenService, IDbContext context)
     {
         _tokenService = tokenService;
         _dbContext = context;

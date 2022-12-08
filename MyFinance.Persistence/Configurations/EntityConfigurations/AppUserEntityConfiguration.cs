@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MyFinance.Domain.Models;
 using MyFinance.Domain.Models.Identity;
 
 namespace MyFinance.Persistence.Configurations.EntityConfigurations;
