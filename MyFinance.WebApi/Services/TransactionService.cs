@@ -4,7 +4,6 @@ using MyFinance.Common;
 using MyFinance.Common.Models;
 using MyFinance.Core.Dto;
 using MyFinance.Core.Services;
-using MyFinance.Domain.Models;
 using MyFinance.Domain.Models.Transactions;
 using MyFinance.Persistence;
 
@@ -54,25 +53,12 @@ internal class TransactionService : ITransactionService
         var account = await _accountService.GetAccountAsync(accountId)!;
         Checker.NotNull(account);
 
-
-        var total = transactions.Select(x =>
-        {
-            var sum = x.Sum;
-            if (x.Category.Type == CategoryType.Expenses)
-            {
-                sum = -sum;
-            }
-
-            return sum;
-        }).Sum();
-
         var entities = _mapper.Map<IEnumerable<Transaction>>(transactions).ToList();
         foreach (var transaction in entities)
         {
             account.Transactions.Add(transaction);
         }
 
-        account.Balance = account.Balance + total;
         await _accountService.UpdateAsync(account);
         return ActionResult.Ok(entities.Select(x => x.Id));
     }

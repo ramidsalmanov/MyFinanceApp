@@ -16,18 +16,17 @@ public class AppUserEntityConfiguration : IEntityTypeConfiguration<AppUser>
             .UsingEntity<AppUserRole>(
                 u => u.HasOne(x => x.AppRole).WithMany(),
                 r => r.HasOne(x => x.AppUser).WithMany());
-        //migrationBuilder.Sql("create extension ltree");
         var user = new AppUser()
         {
             Id = APP_USER_ID,
             UserName = "admin",
             NormalizedUserName = "ADMIN",
-            PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "admin"),
+            PasswordHash = "AQAAAAEAACcQAAAAEFKiPKdTwYTgnb3tUwlk3GKf6NSwfc1kY3JQSFx8O/mWJaWupuHyiwICxVGqR1jkCQ==",
             SecurityStamp = string.Empty,
             ConcurrencyStamp = string.Empty
         };
         builder.HasData(user);
     }
-    
+
     public const string APP_USER_ID = "4A065F13-D011-437E-B22A-8B4666C5E5CE";
 }

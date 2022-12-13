@@ -27,16 +27,8 @@ public class TransactionsController : BaseController
         var transactions = await _transactionService.GetTransactions(id)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).ToListAsync();
 
-        // var transfers = _transactionService.GetTransfers(id)
-        //     .ProjectTo<TransactionDto>(Mapper.ConfigurationProvider);
-
         return transactions;
     }
-    //
-    // protected override async Task OnPostAsync(Transaction entity)
-    // {
-    //     await _transactionService.CreateAsync(entity);
-    // }
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] AccountDto accountDto)
